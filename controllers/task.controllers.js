@@ -3,9 +3,15 @@ const taskDtb = require('../models/task.models.js');
 
 //[GET] /task
 module.exports.index = async (req, res) => {
-    const task = await taskDtb.find({
+
+    const find = {
         deleted: false
-    })
+    }
+    if (req.query.status) {
+        find.status = req.query.status
+    }
+    const task = await taskDtb.find(find);
+
     res.json(task);
 }
 
