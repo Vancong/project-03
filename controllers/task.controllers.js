@@ -10,7 +10,13 @@ module.exports.index = async (req, res) => {
     if (req.query.status) {
         find.status = req.query.status
     }
-    const task = await taskDtb.find(find);
+    const sortKey = req.query.sortKey;
+    const sortValue = req.query.sortValue;
+    const sort = {};
+    if (sortKey && sortValue) {
+        sort[sortKey] = sortValue;
+    }
+    const task = await taskDtb.find(find).sort(sort);
 
     res.json(task);
 }
