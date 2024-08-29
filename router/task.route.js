@@ -14,4 +14,6 @@ router.post('/create', taskContronllers.createPost);
 
 router.patch('/edit/:id', taskContronllers.editPatch);
 
+router.patch('/delete', taskContronllers.delete);
+
 module.exports = router;
