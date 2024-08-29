@@ -8,4 +8,6 @@ router.get('/', taskContronllers.index);
 
 router.get('/detail/:id', taskContronllers.detail);
 
+router.patch('/change-status/:id', taskContronllers.changeStatus);
+
 module.exports = router;

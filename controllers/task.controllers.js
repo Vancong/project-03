@@ -61,3 +61,23 @@ module.exports.detail = async (req, res) => {
     })
     res.json(task);
 }
+
+//[GET] /task/change-status/:id
+module.exports.changeStatus = async (req, res) => {
+    try {
+        const status = req.body.status;
+        const id = req.params.id;
+        await taskDtb.updateOne({
+            _id: id
+        }, {
+            status: status
+        })
+        res.json({
+            message: "cap nhat trang thai thanh cong"
+        });
+    } catch (error) {
+        res.json({
+            message: 'Not found'
+        })
+    }
+}
