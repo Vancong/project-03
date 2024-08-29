@@ -12,4 +12,6 @@ router.patch('/change-status', taskContronllers.changeStatus);
 
 router.post('/create', taskContronllers.createPost);
 
+router.patch('/edit/:id', taskContronllers.editPatch);
+
 module.exports = router;

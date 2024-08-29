@@ -94,3 +94,19 @@ module.exports.createPost = async (req, res) => {
         message: 'Tao moi cong viec thanh cong'
     })
 }
+
+//[PATCH] /task/edit:id
+module.exports.editPatch = async (req, res) => {
+    try {
+        await taskDtb.updateOne({
+            _id: req.params.id
+        }, req.body)
+        res.json({
+            message: "Cap nhat cong viec thanh cong"
+        })
+    } catch (error) {
+        res.json({
+            message: 'Not found'
+        })
+    }
+}
