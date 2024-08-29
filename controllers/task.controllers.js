@@ -114,10 +114,12 @@ module.exports.editPatch = async (req, res) => {
 //[PATCH] /task/delete
 module.exports.delete = async (req, res) => {
     const idf = req.body.idf;
-    await taskDtb.deleteMany({
+    await taskDtb.updateMany({
         _id: {
             $in: idf
         }
+    }, {
+        deleted: true
     });
     res.json({
         message: 'Xoa thanh cong'
