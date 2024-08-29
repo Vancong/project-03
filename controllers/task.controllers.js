@@ -11,8 +11,8 @@ module.exports.index = async (req, res) => {
 
     if (req.query.page && req.query.limitItem) {
         skip.page = parseInt(req.query.page);
-        skip.skipPage = (skip.page - 1) * skip.limit;
         skip.limitItem = parseInt(req.query.limitItem);
+        skip.skipPage = (skip.page - 1) * skip.limitItem;
     }
 
     //end phan trang
@@ -43,7 +43,7 @@ module.exports.index = async (req, res) => {
         find.title = regex;
     }
     //end tim kiem
-
+    console.log(skip);
     const task = await taskDtb.find(find)
         .sort(sort)
         .skip(skip.skipPage)
@@ -82,4 +82,15 @@ module.exports.changeStatus = async (req, res) => {
             message: 'Not found'
         })
     }
+}
+
+//[POST] /task/create
+module.exports.createPost = async (req, res) => {
+
+    const newtask = new taskDtb(req.body);
+    await newtask.save();
+
+    res.json({
+        message: 'Tao moi cong viec thanh cong'
+    })
 }

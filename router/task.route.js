@@ -10,4 +10,6 @@ router.get('/detail/:id', taskContronllers.detail);
 
 router.patch('/change-status', taskContronllers.changeStatus);
 
+router.post('/create', taskContronllers.createPost);
+
 module.exports = router;
