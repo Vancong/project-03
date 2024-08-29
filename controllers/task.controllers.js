@@ -66,9 +66,11 @@ module.exports.detail = async (req, res) => {
 module.exports.changeStatus = async (req, res) => {
     try {
         const status = req.body.status;
-        const id = req.params.id;
-        await taskDtb.updateOne({
-            _id: id
+        const idf = req.body.idf;
+        await taskDtb.updateMany({
+            _id: {
+                $in: idf
+            }
         }, {
             status: status
         })
