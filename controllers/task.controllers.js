@@ -43,7 +43,6 @@ module.exports.index = async (req, res) => {
         find.title = regex;
     }
     //end tim kiem
-    console.log(skip);
     const task = await taskDtb.find(find)
         .sort(sort)
         .skip(skip.skipPage)
@@ -86,7 +85,7 @@ module.exports.changeStatus = async (req, res) => {
 
 //[POST] /task/create
 module.exports.createPost = async (req, res) => {
-
+    req.body.createdBy = req.user.id;
     const newtask = new taskDtb(req.body);
     await newtask.save();
 
