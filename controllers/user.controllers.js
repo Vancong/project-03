@@ -144,3 +144,24 @@ module.exports.reset = async (req, res) => {
         message: 'Doi mat khau thanh cong'
     })
 }
+
+// [PATCH] /user/profile
+module.exports.profile = async (req, res) => {
+    try {
+        const user = await userDtb.findOne({
+            token: req.tokenVerify
+        }).select('fullName email');
+        if (!user) {
+            res.json({
+                code: 400
+            })
+            return;
+        }
+        res.json({
+            code: 200,
+            user: user
+        })
+    } catch (error) {
+
+    }
+}
